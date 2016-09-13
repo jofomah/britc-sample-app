@@ -8,9 +8,6 @@ install:
   - npm install -g bower gulp
   - cd angular_app
   - npm install
-  - gulp build
-  - cd ..
-
 script:
   - flask/bin/nosetests
   - cd angular_app && npm test
