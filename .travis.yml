@@ -4,6 +4,14 @@ python:
   - "2.7"
 install:
   - ./install.sh
+  - nvm install 4.2
+  - npm install -g bower gulp
+  - cd angular_app
+  - npm install
+  - gulp build
+  - cd ..
+
 script:
-  flask/bin/nosetests
+  - flask/bin/nosetests
+  - cd angular_app && npm test
 
