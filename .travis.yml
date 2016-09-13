@@ -1,3 +1,4 @@
+sudo: false
 dist: trusty
 language: python
 python:
@@ -5,7 +6,7 @@ python:
 install:
   - ./install.sh
   - nvm install 4.2
-  - npm install -g bower gulp
+  - npm install -g bower gulp npm@2.14.12
   - cd angular_app
   - npm install
 script:
