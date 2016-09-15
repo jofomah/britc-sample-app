@@ -6,7 +6,7 @@ python:
 node_js:
   - "4.2.6"
 install:
-  - "node - v"
+  - "node -v"
   - "nvm install 4.2.6"
   - "nvm use 4.2.4"
   - ./install.sh
