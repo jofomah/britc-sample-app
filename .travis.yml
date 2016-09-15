@@ -11,6 +11,8 @@ before_script:
   - "npm install -g bower gulp"
   - "cd angular_app"
   - "npm install"
+  - "bower install"
+  - "grunt build"
   - "cd .."
 script:
   - flask/bin/nosetests
