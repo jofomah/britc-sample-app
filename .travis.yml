@@ -12,15 +12,5 @@ install:
   - npm install
   - cd ..
   - ./install.sh
-  # - nvm install 4.2
-  # - npm install -g bower gulp
-  # - cd angular_app
-  # - npm install
 script:
   - flask/bin/nosetests
-  # - cd angular_app && npm test
-deploy:
-  provider: heroku
-  app: cedar14-githubanalytics
-  api_key:
-    - secure: **something special**
