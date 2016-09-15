@@ -6,13 +6,9 @@ python:
 node_js:
   - "4.2.6"
 install:
-  - "node -v"
-  - "nvm install 4.2.6"
-  - "nvm use 4.2.4"
   - ./install.sh
 before_script:
   - "npm install -g bower gulp"
-  - "node -v"
   - "cd angular_app"
   - "npm install"
   - "cd .."
