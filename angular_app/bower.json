@@ -1,69 +1,71 @@
 {
-    "name": "feature-request-app",
-    "description": "A Flask and AngularJS web application.",
-    "version": "1.0.0",
-    "dependencies": {
-        "angular-toastr": "~0.5.2",
-        "font-awesome": "~4.4.0",
-        "angular-ui-router": "~0.2.13",
-        "bootstrap-sass-official": "~3.3.4",
-        "angular": "^1.5.8",
-        "angular-messages": "~1.4.7",
-        "angular-bootstrap": "~2.0.0",
-        "jquery": "^3.1.0",
-        "angular-animate": "^1.5.8",
-        "angular-ui-router-anim-in-out": "^1.0.2",
-        "angular-cookies": "^1.5.8"
+  "name": "feature-request-app",
+  "description": "A Flask and AngularJS web application.",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular-toastr": "~0.5.2",
+    "font-awesome": "~4.4.0",
+    "angular-ui-router": "~0.2.13",
+    "bootstrap-sass-official": "~3.3.4",
+    "angular": "^1.5.8",
+    "angular-messages": "~1.4.7",
+    "angular-bootstrap": "~2.0.0",
+    "jquery": "^3.1.0",
+    "angular-animate": "^1.5.8",
+    "angular-ui-router-anim-in-out": "^1.0.2",
+    "angular-cookies": "^1.5.8",
+    "angular-ui-select": "^0.19.4",
+    "nya-bootstrap-select": "^2.1.8"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.5.8",
+    "es5-shim": "~4.0.5"
+  },
+  "resolutions": {
+    "angular": "^1.5.8",
+    "lodash": "~2.4.1",
+    "angular-animate": "^1.5.8"
+  },
+  "overrides": {
+    "bootstrap-sass-official": {
+      "main": [
+        "assets/stylesheets/_bootstrap.scss",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.eot",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.svg",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.ttf",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.woff",
+        "assets/fonts/bootstrap/glyphicons-halflings-regular.woff2"
+      ],
+      "dependencies": []
     },
-    "devDependencies": {
-        "angular-mocks": "~1.5.8",
-        "es5-shim": "~4.0.5"
+    "lodash": {
+      "main": "dist/lodash.js"
     },
-    "resolutions": {
-        "angular": "^1.5.8",
-        "lodash": "~2.4.1",
-        "angular-animate": "^1.5.8"
-    },
-    "overrides": {
-        "bootstrap-sass-official": {
-            "main": [
-                "assets/stylesheets/_bootstrap.scss",
-                "assets/fonts/bootstrap/glyphicons-halflings-regular.eot",
-                "assets/fonts/bootstrap/glyphicons-halflings-regular.svg",
-                "assets/fonts/bootstrap/glyphicons-halflings-regular.ttf",
-                "assets/fonts/bootstrap/glyphicons-halflings-regular.woff",
-                "assets/fonts/bootstrap/glyphicons-halflings-regular.woff2"
-            ],
-            "dependencies": []
-        },
-        "lodash": {
-            "main": "dist/lodash.js"
-        },
-        "font-awesome": {
-            "main": [
-                "scss/font-awesome.scss",
-                "fonts/FontAwesome.otf",
-                "fonts/fontawesome-webfont.eot",
-                "fonts/fontawesome-webfont.svg",
-                "fonts/fontawesome-webfont.ttf",
-                "fonts/fontawesome-webfont.woff",
-                "fonts/fontawesome-webfont.woff2"
-            ]
-        }
-    },
-    "authors": [],
-    "keywords": [
-        "Monitoring",
-        "Tracking",
-        "Utility sector"
-    ],
-    "license": "ISC",
-    "homepage": "https://github.com/jofomah",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ]
+    "font-awesome": {
+      "main": [
+        "scss/font-awesome.scss",
+        "fonts/FontAwesome.otf",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2"
+      ]
+    }
+  },
+  "authors": [],
+  "keywords": [
+    "Monitoring",
+    "Tracking",
+    "Utility sector"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jofomah",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }
