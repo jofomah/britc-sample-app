@@ -1,5 +1,5 @@
 python virtualenv.py flask
-flask/bin/pip install setuptools --no-use-wheel --upgrade
+flask/bin/pip install setuptools --no-binary --upgrade
 flask/bin/pip install flask==0.9
 flask/bin/pip install flask-login
 flask/bin/pip install flask-openid
@@ -13,3 +13,9 @@ flask/bin/pip install pytz==2013b
 flask/bin/pip install flask-babel==0.8
 flask/bin/pip install flup
 flask/bin/pip install nose==1.3.7
+
+flask/bin/pip install authomatic
+flask/bin/pip install flask-admin
+flask/bin/pip install flask-security
+flask/bin/pip install flask-restful
+
