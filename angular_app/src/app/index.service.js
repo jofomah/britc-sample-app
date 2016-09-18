@@ -28,10 +28,10 @@ angular.module('app')
      */
     function authenticateUser (event, toState) {
       // if user session does not exist and user tries to navigate to another state except login, take user to login page
-      if (!angular.isObject(CookieService.getCurrentUser()) && toState && toState.name !== 'login') {
-        $state.transitionTo('login')
-        event.preventDefault()
-      }
+      //if (!angular.isObject(CookieService.getCurrentUser()) && toState && toState.name !== 'login') {
+      //  $state.transitionTo('login')
+      //  event.preventDefault()
+      //}
     }
 
     /**
@@ -64,7 +64,7 @@ angular.module('app')
       $rootScope.$on('$stateChangeError', onError)
 
       // Ensure that user is logged in on state transition
-      $rootScope.$on('$stateChangeStart', authenticateUser)
+      // $rootScope.$on('$stateChangeStart', authenticateUser)
 
       // Handle unauthorized event emission
       $rootScope.$on('unauthorized', onAuthError)
