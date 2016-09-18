@@ -7,3 +7,7 @@ db_repository
 flask
 node_modules
 .idea
+bower_components
+dist
+coverage
+.tmp
