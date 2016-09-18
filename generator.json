@@ -1,5 +1,82 @@
 {
-    "baseName": "feature-request-app",
-    "entities": [],
-    "resources": []
+	"baseName": "feature-request-app",
+	"entities": [
+		{
+			"name": "client",
+			"attrs": [
+				{
+					"attrName": "name",
+					"attrType": "String",
+					"minLength": "1",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				}
+			]
+		},
+		{
+			"name": "feature_request",
+			"attrs": [
+				{
+					"attrName": "title",
+					"attrType": "String",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "description",
+					"attrType": "String",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "priority",
+					"attrType": "Integer",
+					"min": "0",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "target_date",
+					"attrType": "Date",
+					"dateConstraint": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "ticket_url",
+					"attrType": "String",
+					"minLength": "",
+					"maxLength": "",
+					"enumValues": [],
+					"required": false
+				},
+				{
+					"attrName": "client",
+					"attrType": "Integer",
+					"min": "",
+					"max": "",
+					"enumValues": [],
+					"required": true
+				},
+				{
+					"attrName": "product_area",
+					"attrType": "Enum",
+					"enumValues": [
+						"Policies",
+						" Billing",
+						" Claims",
+						" Reports"
+					],
+					"required": true
+				}
+			]
+		}
+	],
+	"resources": []
 }
