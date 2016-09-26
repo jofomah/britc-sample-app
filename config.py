@@ -1,48 +1,47 @@
 import os
-from authomatic.providers import oauth2, oauth1, openid
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 
-CONFIG = {
 
-    'tw': { # Your internal provider name
-
-        # Provider class
-        'class_': oauth1.Twitter,
-
-        # Twitter is an AuthorizationProvider so we need to set several other properties too:
-        'consumer_key': os.environ.get('TWITTER_CONSUMER_KEY', ''),
-        'consumer_secret': os.environ.get('TWITTER_CONSUMER_SECRET', ''),
-    },
-
-    'fb': {
-
-        'class_': oauth2.Facebook,
-
-        # Facebook is an AuthorizationProvider too.
-        'consumer_key': '########################',
-        'consumer_secret': '########################',
-
-        # But it is also an OAuth 2.0 provider and it needs scope.
-        'scope': ['user_about_me', 'email', 'publish_stream'],
-    },
-
-    'oi': {
-
-        # OpenID provider dependent on the python-openid package.
-        'class_': openid.OpenID,
-    }
+ADMIN = {
+    'username': os.environ.get('ADMIN_USER'),
+    'password': os.environ.get('ADMIN_PASS'),
+    'email': os.environ.get('ADMIN_EMAIL')
 }
+# disable CSRF for auth api access from client side
+CSRF_ENABLED = True
 
-SECRET_KEY = 'secret_key'
-SECURITY_URL_PREFIX = '/api'
-# SECURITY_LOGIN_URL = 'api/login'
-# SECURITY_LOGOUT_URL = 'api/logout'
-# SECURITY_REGISTER_URL = 'api/register'
-# SECURITY_RESET_URL = 'api/reset'
-# SECURITY_CHANGE_URL = 'api/change'
-# SECURITY_CONFIRM_URL = 'api/confirm'
-# SECURITY_POST_LOGOUT_VIEW = 'login'
+#secret key used for hashing
+SECRET_KEY = os.environ.get('SECRET_KEY', 'secret_key')
+
+# for older versions of flask mail DEFAULT_MAIL_SENDER
+DEFAULT_MAIL_SENDER= os.environ.get('MAIL_SENDER', 'jideobibritc@gmail.com')
+MAIL_USERNAME = os.environ.get('MAIL_USERNAME', '"Britc Email Service" <jideobibritc@gmail.com>')
+MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+# for newer version
+MAIL_DEFAULT_SENDER = os.environ.get('MAIL_SENDER', 'jideobibritc@gmail.com')
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 465
+MAIL_USE_SSL = True
+MAIL_USE_TLS = False
+
+
+
+#Flask user config
+USER_APP_NAME = 'Britc Sample App'
+USER_AFTER_LOGIN_ENDPOINT = 'admin.index'
+USER_CHANGE_PASSWORD_URL      = '/auth/change-password'
+USER_CHANGE_USERNAME_URL      = '/auth/change-username'
+USER_CONFIRM_EMAIL_URL        = '/auth/confirm-email/<token>'
+USER_EMAIL_ACTION_URL         = '/auth/email/<id>/<action>'     # v0.5.1 and up
+USER_FORGOT_PASSWORD_URL      = '/auth/forgot-password'
+USER_INVITE_URL               = '/auth/invite'                  # v0.6.2 and up
+USER_LOGIN_URL                = '/auth/login'
+USER_LOGOUT_URL               = '/auth/logout'
+USER_MANAGE_EMAILS_URL        = '/auth/manage-emails'
+USER_REGISTER_URL             = '/auth/register'
+USER_RESEND_CONFIRM_EMAIL_URL = '/auth/resend-confirm-email'    # v0.5.0 and up
+USER_RESET_PASSWORD_URL       = '/auth/reset-password/<token>'
