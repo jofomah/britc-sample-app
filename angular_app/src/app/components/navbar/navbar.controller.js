@@ -6,7 +6,6 @@ angular.module('navbar')
       vm.isLoggedIn = CookieService.isLoggedIn
       vm.getUsername = function () {
           var curretUser = CookieService.getCurrentUser()
-          console.info(curretUser)
           return (curretUser && curretUser.username) || 'Anonymous'
       }
       vm.name = 'BritCore Sample App'
