@@ -4,11 +4,14 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_admin import Admin
 from flask_security.utils import encrypt_password
+from flask_cors import CORS
+
 
 # Bootstrap main app
 app = Flask(__name__, static_url_path='')
 app.config.from_object('config')
 db = SQLAlchemy(app)
+CORS(app)
 
 # Import models
 from app.models import client
