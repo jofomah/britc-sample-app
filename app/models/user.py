@@ -1,4 +1,4 @@
-from flask_user import UserMixin
+from flask_security import UserMixin, RoleMixin
 from app import db
 
 
@@ -35,9 +35,15 @@ class User(db.Model, UserMixin):
         )
 
 # Define the Role data model
-class Role(db.Model):
+class Role(db.Model, RoleMixin):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(50), unique=True)
+
+    def to_dict(self):
+        return dict(
+            name=self.name,
+            id=self.id
+        )
 
     def __str__(self):
         return self.name
