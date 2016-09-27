@@ -1,13 +1,22 @@
 angular.module('home')
-  .controller('HomeController', function ($uibModal, $state, $stateParams, FeatureService, featureRequests) {
+  .controller('HomeController', function ($uibModal, $state, $stateParams, FeatureService, featureRequests, $scope) {
       var vm = this
-      vm.keyword = ''
-      vm.orderByField = ''
-      vm.features = featureRequests
 
-      vm.sortBy = function (field) {
-          vm.orderByField = field
-      }
+      vm.dragControlListeners = {
+          //optional param
+          containment: '#blocks',
+          orderChanged: function (event) {
+              //console.log('Source : ', event.source.index, event.source.itemScope.modelValue)
+              // console.log('Dest : ', event.dest.index, event.dest.sortableScope.modelValue)
+              // console.log('Order Changed : ', 'Dest : ', event.dest.sortableScope, 'Source :', event.source.sortableScope.modelValue)
+              // TODO: persist after sorting
+          },
+          clone: false, //optional param for clone feature.
+          allowDuplicates: false, //optional param allows duplicates to be dropped.
+      };
+
+      vm.keyword = ''
+      vm.features = FeatureService.sortFeatureBy(featureRequests)
       vm.actions = FeatureService.actions
 
       vm.open = function (featureId, action) {
@@ -42,10 +51,4 @@ angular.module('home')
                   console.info('Modal dismissed because of : ', reason)
               })
       }
-
-      vm.delete = function (featureId) {
-
-      }
-
-
   })
