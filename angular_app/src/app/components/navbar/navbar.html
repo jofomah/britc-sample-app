@@ -22,36 +22,37 @@
             </a>
         </div>
 
-        <div class="collapse navbar-collapse" uib-collapse="navbarCtrl.isCollapsed" ng-show="navbarCtrl.isLoggedIn()">
-            <ul class="nav navbar-nav">
-                <li
-                    ng-repeat="item in navbarCtrl.items track by item.name"
-                    ui-sref-active="active">
-                    <a
-                        ng-click="navbarCtrl.toggleCollapse()"
-                        ui-sref="{{item.name}}"
-                        ng-bind="::item.label"
-                    ></a>
-                </li>
-            </ul>
+        <div ng-if="navbarCtrl.isLoggedIn()">
+            <div class="collapse navbar-collapse" uib-collapse="navbarCtrl.isCollapsed">
+                <ul class="nav navbar-nav">
+                    <li
+                        ng-repeat="item in navbarCtrl.items track by item.name"
+                        ui-sref-active="active">
+                        <a
+                            ng-click="navbarCtrl.toggleCollapse()"
+                            ui-sref="{{item.name}}"
+                            ng-bind="::item.label"
+                        ></a>
+                    </li>
+                </ul>
 
-            <!-- Logout section -->
-            <ul class="nav navbar-nav navbar-right dropdown">
-                <li>
-                    <div class="btn-group" uib-dropdown keyboard-nav>
-                        <button type="button" class="btn btn-default" uib-dropdown-toggle>
-                            <i class="fa fa-user fa-lg"></i>
-                            <span ng-bind="::navbarCtrl.getUsername()"></span>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" uib-dropdown-menu role="menu"
-                            aria-labelledby="simple-btn-keyboard-nav">
-                            <li role="menuitem"><a ui-sref="logout">Logout</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+                <!-- Logout section -->
+                <ul class="nav navbar-nav navbar-right dropdown">
+                    <li>
+                        <div class="btn-group" uib-dropdown keyboard-nav>
+                            <button type="button" class="btn btn-default" uib-dropdown-toggle>
+                                <i class="fa fa-user fa-lg"></i>
+                                <span ng-bind="::navbarCtrl.getUsername()"></span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu"
+                                aria-labelledby="simple-btn-keyboard-nav">
+                                <li role="menuitem"><a ui-sref="logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
-
     </div>
 </nav>
