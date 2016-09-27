@@ -1,6 +1,6 @@
 python virtualenv.py flask
 flask/bin/pip install setuptools --no-binary --upgrade
-flask/bin/pip install flask==0.9
+flask/bin/pip install flask==0.10
 flask/bin/pip install flask-login
 flask/bin/pip install flask-openid
 flask/bin/pip install flask-mail
@@ -15,5 +15,6 @@ flask/bin/pip install flup
 flask/bin/pip install nose==1.3.7
 flask/bin/pip install flask-user
 flask/bin/pip install flask-admin
+flask/bin/pip install flask-security
 
 
