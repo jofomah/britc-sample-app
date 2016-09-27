@@ -14,7 +14,8 @@ angular
         'ngAnimate',
         'toastr',
         'anim-in-out',
-        'nya.bootstrap.select'
+        'nya.bootstrap.select',
+        'as.sortable'
     ])
     .run(function (IndexService) {
         IndexService.startup()
