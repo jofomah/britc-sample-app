@@ -1,15 +1,18 @@
 from app import app, db
 from app.models import feature_request, client
 from flask import abort, jsonify, request, make_response
+from flask_security import auth_token_required
 import datetime
 import json
 
 @app.route('/api/feature_requests', methods = ['GET'])
+@auth_token_required
 def get_all_feature_requests():
     entities = feature_request.FeatureRequest.query.all()
     return json.dumps([entity.to_dict() for entity in entities])
 
 @app.route('/api/feature_requests/<int:id>', methods = ['GET'])
+@auth_token_required
 def get_feature_request(id):
     entity = feature_request.FeatureRequest.query.get(id)
     if not entity:
@@ -17,6 +20,7 @@ def get_feature_request(id):
     return jsonify(entity.to_dict())
 
 @app.route('/api/feature_requests', methods = ['POST'])
+@auth_token_required
 def create_feature_request():
     entity = feature_request.FeatureRequest(
         title = request.json['title']
@@ -37,6 +41,7 @@ def create_feature_request():
     return jsonify(entity.to_dict()), 201
 
 @app.route('/api/feature_requests/<int:id>', methods = ['PUT'])
+@auth_token_required
 def update_feature_request(id):
     entity = feature_request.FeatureRequest.query.get(id)
     #TODO: rearrange by client priority
@@ -57,6 +62,7 @@ def update_feature_request(id):
     return jsonify(feature_request.FeatureRequest.query.get(id).to_dict()), 200
 
 @app.route('/api/feature_requests/<int:id>', methods = ['DELETE'])
+@auth_token_required
 def delete_feature_request(id):
     entity = feature_request.FeatureRequest.query.get(id)
     if not entity:

@@ -4,11 +4,14 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask_security import Security, SQLAlchemyUserDatastore
 from flask_admin import Admin
 from flask_security.utils import encrypt_password
+from flask_cors import CORS
+
 
 # Bootstrap main app
 app = Flask(__name__, static_url_path='')
 app.config.from_object('config')
 db = SQLAlchemy(app)
+CORS(app)
 
 # Import models
 from app.models import client
@@ -28,11 +31,12 @@ user_datastore = SQLAlchemyUserDatastore(db, user.User, user.Role)
 security = Security(app, user_datastore)
 mail = Mail(app)
 
-# Create admin user on start up
-
 
 @app.before_first_request
 def create_user():
+    '''
+    create default admin user on start up
+    '''
     admin_config = app.config.get('ADMIN')
     username = admin_config['username']
     password = admin_config['password']

@@ -16,5 +16,5 @@ flask/bin/pip install nose==1.3.7
 flask/bin/pip install flask-user
 flask/bin/pip install flask-admin
 flask/bin/pip install flask-security
-
+flask/bin/pip install flask-cors
 

@@ -1,6 +1,6 @@
 from app import app
 from flask import request, make_response, jsonify, abort
-from flask_security import auth_token_required, login_user
+from flask_security import login_user
 from flask_security.utils import verify_password
 from app.models import user
 
