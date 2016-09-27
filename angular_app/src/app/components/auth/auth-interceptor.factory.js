@@ -10,8 +10,8 @@ angular.module('auth')
 
         var currentUser = CookieService.getCurrentUser()
 
-        if (currentUser && currentUser.sessionId && angular.isString(config.url) && config.url.indexOf('.html') === -1) {
-          angular.extend(config.params, {sessionId: currentUser.sessionId})
+        if (currentUser && currentUser.authToken && angular.isString(config.url) && config.url.indexOf('.html') === -1) {
+          angular.extend(config.params, {auth_token: currentUser.authToken})
         }
         return config
       },
