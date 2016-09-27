@@ -31,11 +31,12 @@ user_datastore = SQLAlchemyUserDatastore(db, user.User, user.Role)
 security = Security(app, user_datastore)
 mail = Mail(app)
 
-# Create admin user on start up
-
 
 @app.before_first_request
 def create_user():
+    '''
+    create default admin user on start up
+    '''
     admin_config = app.config.get('ADMIN')
     username = admin_config['username']
     password = admin_config['password']
