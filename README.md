@@ -22,15 +22,16 @@
 - `npm install` to install node packages which will also run `bower install`, if bower packages didn't install, run it by `bower i`
 - To run unit test `gulp test`, once test comepleted, open `coverage/lcov/lcov-report/index.html` to see test coverage report.
 - Run `gulp build` to build(inject dependencies, minify `js`, `css`, `html`) from  `src` folder and copy the source code to `app/static` folder
-- To serve, run `gulp serve` once it is completed, open `http://localhost:3000` on your browser.
-- Run `npm test` to run angularjs test
+- Run `npm test` to run AngularJS test
+- while in root folder run `flask/bin/nosetests` to run flask server side unit test
 
 ### Start Flask Application
 
-- cd angular_app and run grunt build to generate minified version of the client side and place in `app/static` folder
+- cd angular_app and run `grunt build` to generate minified version of the client side and place in `app/static` folder
 - cd to root folder and run the following commands.
 - MAIL_SENDER=<mail-sender-email> MAIL_PASSWORD=<email-sender-account-password> ADMIN_USER=<default-admin-username> ADMIN_PASS=<admin-account-password> ADMIN_EMAIL=<admin-email> flask/bin/python run.py
-- open browser and navigate to `http://localhost:3000`
+- open browser and navigate to `http://localhost:5000` to serve directly from server side or 
+- `cd angular_app` and run `gulp serve` it will automatically open a chrome browser (this is only for development purpose)
 
 ## License
 
