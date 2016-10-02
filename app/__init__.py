@@ -1,8 +1,8 @@
-from flask import Flask
+from flask import Flask, url_for
 from flask_mail import Mail
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask_security import Security, SQLAlchemyUserDatastore
-from flask_admin import Admin
+from flask_admin import Admin, helpers as admin_helpers
 from flask_security.utils import encrypt_password
 from flask_cors import CORS
 
@@ -56,3 +56,14 @@ admin.add_view(admin_views.MyModelView(user.User, db.session))
 admin.add_view(admin_views.MyModelView(client.Client, db.session))
 admin.add_view(admin_views.MyModelView(user.Role, db.session))
 admin.add_view(admin_views.MyModelView(user.UserRoles, db.session))
+
+# define a context processor for merging flask-admin's template context into the
+# flask-security views.
+@security.context_processor
+def security_context_processor():
+    return dict(
+        admin_base_template=admin.base_template,
+        admin_view=admin.index_view,
+        h=admin_helpers,
+        get_url=url_for
+    )
