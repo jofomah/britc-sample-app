@@ -1,3 +1,3 @@
 'use strict'
 
-angular.module('feature', ['core', 'config'])
+angular.module('feature', ['core', 'config', 'utility'])
