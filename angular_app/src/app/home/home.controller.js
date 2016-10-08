@@ -1,15 +1,28 @@
 angular.module('home')
-  .controller('HomeController', function ($uibModal, $state, $stateParams, FeatureService, featureRequests, $scope) {
+  .controller('HomeController', function ($uibModal, $state, $stateParams, toastr, FeatureService, featureRequests, cfpLoadingBar) {
       var vm = this
+      vm.lastUpdate = null
+
+      vm.onDragSaveSuccess = function (updatedRecord) {
+          vm.lastUpdate = updatedRecord
+      }
+
+      vm.closeAlert = function () {
+          vm.lastUpdate = null
+      }
 
       vm.dragControlListeners = {
           //optional param
           containment: '#blocks',
           orderChanged: function (event) {
-              //console.log('Source : ', event.source.index, event.source.itemScope.modelValue)
-              // console.log('Dest : ', event.dest.index, event.dest.sortableScope.modelValue)
-              // console.log('Order Changed : ', 'Dest : ', event.dest.sortableScope, 'Source :', event.source.sortableScope.modelValue)
-              // TODO: persist after sorting
+              var updatedFeature = FeatureService.rearrange(event.dest.index, event.dest.sortableScope.modelValue)
+              var errMsg = ['An error occurred while updating: <b>',  updatedFeature.title, '</b>'].join(' ')
+              var errTitle = 'Error'
+              cfpLoadingBar.start()
+              FeatureService.save(updatedFeature)
+                  .then(vm.onDragSaveSuccess)
+                  .catch(toastr.error.bind(toastr, errMsg, errTitle))
+                  .finally(cfpLoadingBar.complete.bind(cfpLoadingBar))
           },
           clone: false, //optional param for clone feature.
           allowDuplicates: false, //optional param allows duplicates to be dropped.
@@ -30,9 +43,7 @@ angular.module('home')
               resolve: {
                   feature: function () {
                       // pick it from the list instead of hitting the server
-                      return vm.features.filter(function (feature) {
-                          return featureId === feature.id
-                      })[0]
+                      return FeatureService.getItemFrom(vm.features, featureId)
                   },
                   clients: function (ClientService) {
                       return ClientService.getList()

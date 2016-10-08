@@ -21,7 +21,6 @@ class FeatureRequest(db.Model):
 
 
     def to_dict(self):
-        print self, self.client_id
         return dict(
             title = self.title,
             description = self.description,
@@ -35,3 +34,27 @@ class FeatureRequest(db.Model):
 
     def __repr__(self):
         return '<Feature_request %r>' % (self.id)
+
+    def swap_priority(self, current_entity):
+        self.priority = current_entity.priority
+
+    @classmethod
+    def get_list_by(cls, client_id):
+        return FeatureRequest.query.filter(FeatureRequest.client_id == client_id)\
+            .order_by('priority desc').all()
+
+    @classmethod
+    def get_similar_by(cls, client_id, priority):
+        return FeatureRequest.query.filter(FeatureRequest.client_id == client_id,
+                                           FeatureRequest.priority == priority).first()
+
+    @classmethod
+    def get_other_same_client_and_priority(cls, updated_record):
+        '''
+        This is used to get record that has same priority as updated record.
+        :param updated_record: feature request to be saved
+        :return: feature request that is same client and new priority of "updated_record"
+        '''
+        return FeatureRequest.query.filter(FeatureRequest.client_id == updated_record.client_id,
+                                           FeatureRequest.priority == updated_record.priority,
+                                           FeatureRequest.id != updated_record.id).first()

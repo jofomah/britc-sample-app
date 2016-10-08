@@ -35,7 +35,15 @@ def create_feature_request():
     client_record = client.Client.query.get(entity.client_id)
     if not client_record:
         abort(make_response('Client with id : {}, does not exist'.format(entity.client_id), 404))
-    #TODO: rearrange by client priority
+
+    conflict_entity = feature_request.FeatureRequest.get_similar_by(entity.client_id, entity.priority)
+    if conflict_entity:
+        sorted_client_features = feature_request.FeatureRequest.get_list_by(entity.client_id)
+        if sorted_client_features:
+            least_priority_feature =  sorted_client_features[-len(sorted_client_features)]
+            conflict_entity.priority = least_priority_feature.priority + 1
+            db.session.add(conflict_entity)
+
     db.session.add(entity)
     db.session.commit()
     return jsonify(entity.to_dict()), 201
@@ -44,10 +52,10 @@ def create_feature_request():
 @auth_token_required
 def update_feature_request(id):
     entity = feature_request.FeatureRequest.query.get(id)
-    #TODO: rearrange by client priority
     if not entity:
         abort(404)
-    entity = feature_request.FeatureRequest(
+
+    updated_entity = feature_request.FeatureRequest(
         title = request.json['title'],
         description = request.json['description'],
         priority = request.json['priority'],
@@ -57,7 +65,13 @@ def update_feature_request(id):
         product_area = request.json['productArea'].get('id', None),
         id = id
     )
-    db.session.merge(entity)
+
+    conflict_entity = feature_request.FeatureRequest.get_other_same_client_and_priority(updated_entity)
+    if conflict_entity:
+        conflict_entity.swap_priority(entity)
+        db.session.merge(conflict_entity)
+
+    db.session.merge(updated_entity)
     db.session.commit()
     return jsonify(feature_request.FeatureRequest.query.get(id).to_dict()), 200
 

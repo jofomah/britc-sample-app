@@ -15,7 +15,8 @@ angular
         'toastr',
         'anim-in-out',
         'nya.bootstrap.select',
-        'as.sortable'
+        'as.sortable',
+        'angular-loading-bar'
     ])
     .run(function (IndexService) {
         IndexService.startup()
