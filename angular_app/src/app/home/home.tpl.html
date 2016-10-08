@@ -1,5 +1,9 @@
 <div class="right_col">
     <div class="col-md-12 col-sm-12 col-xs-12">
+        <div uib-alert ng-class="'alert-success'" close="homeCtrl.closeAlert()" ng-show="homeCtrl.lastUpdate !== null">
+           <b>{{ homeCtrl.lastUpdate.title }} ({{ homeCtrl.lastUpdate.client.name }}) </b> was updated successfully!
+            <a ui-sref="home({reload: true})" ui-sref-opts="{reload: true}">Refresh page</a>
+        </div>
         <div class="x_panel">
             <div class="x_title">
                 <div class="col-sm-3">
@@ -43,10 +47,6 @@
                                                 </div>
                                                 <div class="col-md-4 col-sm-3">
                                                     <div class="btn-group pull-right" role="group">
-                                                        <button class="btn btn-default">
-                                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            <span>View</span>
-                                                        </button>
                                                         <button class="btn btn-primary"
                                                                 ng-click="homeCtrl.open(feature.id, homeCtrl.actions.edit)">
                                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
