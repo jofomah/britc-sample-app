@@ -12,7 +12,7 @@
 ## Installation Guide
 
 - Run `./install.sh` while in the root folder to set up Flask environment
-- `flask/bin/python db_create.py` to create database. if you encounter any error, delete app.db in root folder and run again ** Note: it might lead to data loss.
+- `MAIL_PASSWORD={mail-password} ADMIN_USER={admin-username} ADMIN_PASS={admin-pass} ADMIN_EMAIL=osdevseries@gmail.comflask/bin/python db_create.py` to create database. if you encounter any error, delete app.db in root folder and run again ** Note: it might lead to data loss.
 
 - Install [Node.js][] (>=0.12 < 4, npm >=2 <3)
 - Run `npm install -g gulp` to install gulp globally
